@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { secondsToFormatTime } from '../../utils/utils';
 import useInterval from '../../hooks/useInterval';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import Button from './Button/Button';
+import Button from './Button';
 import './timer.css';
 
 function Timer() {
