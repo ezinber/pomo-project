@@ -5,38 +5,26 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import Button from './Button';
 import './timer.css';
 
-function Timer() {
-  const defaultSettings = {
-    work: {
-      time: 25,
-      color: '#F55A5A',
-      slug: 'work',
-    },
-    break: {
-      time: 5,
-      color: '#4ea6e7',
-      slug: 'break',
-    },
-    longBreak: {
-      time: 15,
-      color: '#524fe1',
-      slug: 'longBreak',
-    },
-  }
-
-  const [settings, setSetting] = useLocalStorage('settings', defaultSettings);
+function Timer({ settings, onEnd, onStart, onPause, onModeChange }) {
   const [mode, setMode] = useLocalStorage('mode', settings.work.slug);
   const [run, setRun] = useState(null);
   const [timerTime, setTimerTime] = useLocalStorage('timer', settings.work.time);
 
   const handleClickTimer = () => {
-    setRun(run ? null : 1000);
+    if (run) {
+      onPause(mode);
+      setRun(null);
+    } else {
+      onStart(mode);
+      setRun(1000);
+    }
   }
 
   const modeChange = (newMode) => {
     setRun(null);
     setMode(newMode);
     setTimerTime(settings[newMode].time)
+    onModeChange(newMode);
   }
 
   useInterval(() => {
@@ -46,6 +34,7 @@ function Timer() {
   useEffect(() => {
     if (timerTime <= 0) {
       setRun(null);
+      onEnd(mode);
     }
   }, [timerTime]);
 
