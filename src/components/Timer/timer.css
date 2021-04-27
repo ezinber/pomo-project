@@ -17,14 +17,12 @@
     height: 400px;
     background-color: #fff;
     border-radius: 50px;
-    cursor: pointer;
-    box-shadow: inset 0 0 15px 10px rgba(245, 90, 90, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
     font-family: Roboto, sans-serif;
     font-weight: bold;
     font-size: 72px;
     line-height: 84px;
     color: #fff;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 }
 
 .timer__time {
@@ -41,8 +39,12 @@
     font-weight: bold;
     font-size: 72px;
     line-height: 84px;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
     transition: all 200ms ease;
+}
+
+.timer__time:hover {
+    opacity: .7;
 }
 
 .timer__buttons {
@@ -55,6 +57,7 @@
     border-radius: 20px;
     overflow: hidden;
     margin-top: 27px;
+    box-shadow: inset 0 0 15px rgb(0 0 0 / 25%);
 }
 
 .timer__button {
@@ -72,15 +75,19 @@
 }
 
 .timer__button:hover {
-    background: rgba(245, 90, 90, 0.3);
+    opacity: .7;
+}
+
+.timer__button:focus {
+    outline: none;
 }
 
 .timer__button_active {
     color: #FFFFFF;
-    background: #F55A5A;
+    cursor: default;
     box-shadow: inset 0 0 10px 5px rgba(51, 51, 51, 0.25);
 }
 
 .timer__button_active:hover {
-    background: #F55A5A;
+    opacity: 1;
 }

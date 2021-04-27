@@ -11,7 +11,7 @@ function Button({ children, mode, handleClick, settings, textColor }) {
 
   return (
     <button
-      style={{background: isActive ? color : '#fff', color: isActive ? '#fff' : textColor}}
+      style={{background: isActive ? color : 'none', color: isActive ? '#fff' : textColor}}
       type="button"
       className={classes}
       onClick={handleClickButton}
