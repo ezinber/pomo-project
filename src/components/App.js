@@ -9,19 +9,19 @@ function App() {
   const [settings, setSetting] = useLocalStorage('settings', defaultSettings);
 
   const handleTimerEnd = (mode) => {
-    console.log('Time in mode %d is out', mode);
+    console.log('Time in mode %s is out', mode.slug);
   }
 
   const handleTimerPause = (mode) => {
-    console.log('Timer was paused in mode:', mode);
+    console.log('Timer was paused in mode:', mode.slug);
   }
 
   const handleTimerStart = (mode) => {
-    console.log('Timer has been started on mode:', mode);
+    console.log('Timer has been started on mode:', mode.slug);
   }
 
   const handleTimerModeChange = (mode) => {
-    console.log('Timer mode was changed on:', mode);
+    console.log('Timer mode was changed on:', mode.slug);
   }
 
   /*Так как немного изменилась структура объекта настроек,
