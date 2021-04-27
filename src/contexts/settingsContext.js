@@ -18,7 +18,7 @@ const SettingsContext = createContext({
       color: '#524fe1',
       slug: 'longBreak',
     },
-  }
+  },
 });
 
 export default SettingsContext;

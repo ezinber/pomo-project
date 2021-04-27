@@ -47,12 +47,14 @@ function Timer({ settings, onEnd, onStart, onPause, onModeChange }) {
   return (
     <div className="timer" style={{backgroundColor: settings[mode].color}}>
       <div className="timer__ticker" onClick={handleClickTimer}>
-        {secondsToFormatTime(timerTime)}
+        <div className="timer__time" style={{color: settings[mode].color, borderColor: settings[mode].color}}>
+          {secondsToFormatTime(timerTime)}
+        </div>
       </div>
       <div className="timer__buttons">
-        <Button slug={settings.work.slug} mode={mode} handleClick={modeChange}>Work</Button>
-        <Button slug={settings.break.slug} mode={mode} handleClick={modeChange}>Break</Button>
-        <Button slug={settings.longBreak.slug} mode={mode} handleClick={modeChange}>Long Break</Button>
+        <Button settings={settings.work} textColor={settings[mode].color} mode={mode} handleClick={modeChange}>Work</Button>
+        <Button settings={settings.break} textColor={settings[mode].color} mode={mode} handleClick={modeChange}>Break</Button>
+        <Button settings={settings.longBreak} textColor={settings[mode].color} mode={mode} handleClick={modeChange}>Long Break</Button>
       </div>
       <div>
         <audio src={ring} ref={ringElement} />

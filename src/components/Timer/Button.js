@@ -1,7 +1,9 @@
 import React from 'react';
 
-function Button({ children, mode, handleClick, slug }) {
-  const classes = `timer__button ${mode === slug && 'timer__button_active'}`;
+function Button({ children, mode, handleClick, settings, textColor }) {
+  const {color, slug} = settings;
+  const isActive = mode === slug;
+  const classes = `timer__button ${isActive && 'timer__button_active'}`;
 
   const handleClickButton = () => {
     handleClick(slug);
@@ -9,6 +11,7 @@ function Button({ children, mode, handleClick, slug }) {
 
   return (
     <button
+      style={{background: isActive ? color : '#fff', color: isActive ? '#fff' : textColor}}
       type="button"
       className={classes}
       onClick={handleClickButton}

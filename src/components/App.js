@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import SettingsContext from '../contexts/settingsContext';
 import Timer from './Timer/Timer';
 import useLocalStorage from '../hooks/useLocalStorage';
+import './app.css';
 
 function App() {
-  const defaultSettings = useContext(SettingsContext)
+  const defaultSettings = useContext(SettingsContext);
   const [settings, setSetting] = useLocalStorage('settings', defaultSettings);
 
   const handleTimerEnd = (mode) => {
