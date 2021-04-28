@@ -5,19 +5,22 @@ import Timer from '../Timer';
 
 const settings = {
   work: {
-    time: 25,
+    time: 3,
     color: '#F55A5A',
     slug: 'work',
+    text: 'Work',
   },
   break: {
-    time: 5,
+    time: 1,
     color: '#4ea6e7',
     slug: 'break',
+    text: 'Break',
   },
   longBreak: {
-    time: 15,
+    time: 2,
     color: '#524fe1',
     slug: 'longBreak',
+    text: 'Long Break',
   },
 }
 
@@ -29,7 +32,7 @@ describe('Таймер', () => {
 
   test('Тикер имеет корректное значение', () => {
     const component = shallow(<Timer settings={settings} />)
-    const ticker = component.find('.timer__ticker');
+    const ticker = component.find('.timer__time');
     expect(ticker).toIncludeText(':');
     expect(ticker).not.toIncludeText('NaN');
   })
