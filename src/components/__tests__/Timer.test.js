@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import {shallow} from 'enzyme';
-import Timer from '../Timer';
+import Timer from '../Timer/Timer';
 
 const settings = {
   work: {

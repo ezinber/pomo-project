@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import {shallow} from 'enzyme';
-import Button from '../Button';
+import Button from '../Timer/Button';
 
 const defaultSettings = {
   slug: 'slug',
