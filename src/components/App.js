@@ -8,7 +8,7 @@ import './app.css';
 function App() {
   const defaultSettings = useContext(SettingsContext);
   const [settings, setSetting] = useLocalStorage('settings', defaultSettings);
-  const [tasks, setTasks] = React.useState(defaultTasks); //(Task)
+  const [tasks, setTasks] = useLocalStorage('tasks', defaultTasks); //(Task)
 
   const handleTimerEnd = (mode) => {
     console.log('Time in mode %d is out', mode);
@@ -39,12 +39,23 @@ function App() {
   }
 
   function handleTaskClick(task) {
-    console.log('click');
     setTasks(state => state.map(current => {
       current.id !== task.id
       ? current.isActive = false
       : current.isActive = true;
 
+      return current;
+    }));
+  }
+
+  function handleTaskSave(task) {
+    //setTasks(state => state.map(current => current.id === task.id ? task : current));
+    setTasks(state => state.map(current => {
+      if (current.id === task.id) {
+        console.log(task.text);
+        return task;
+      }
+      console.log(current.text);
       return current;
     }));
   }
@@ -61,7 +72,7 @@ function App() {
 
   return (
     <SettingsContext.Provider value={settings}>
-      <div className="App">
+      <div className="app">
         <Timer
           settings={settings.timer}
           onStart={handleTimerStart}
@@ -71,13 +82,15 @@ function App() {
         />
 
         {/* Список задач возможно стоит вынести в отдельный компонент (Task)*/}
-        <ul className="tasklist">
+        <ul className="app__sidebar">
           {tasks.map(taskData => (
             <Task
+              key={taskData.id}
               task={taskData}
               onDelete={handleTaskDelete}
               onComplete={handleTaskComplete}
               onClick={handleTaskClick}
+              onSave={handleTaskSave}
             />
           ))}
         </ul>

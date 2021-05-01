@@ -1,13 +1,12 @@
 .task {
-  margin: 0 10px 10px;
+  margin: 0 0 10px 0;
   padding: 0;
-  width: 400px;
-  height: 40px;
+  height: 35px;
   display: flex;
   align-items: center;
   list-style: none;
   box-shadow: inset 0 0 10px rgb(0 0 0 / 5%);
-  border-radius: 12px;
+  border-radius: 20px;
   color: rgb(245, 90, 90);
   cursor: pointer;
   transition: all 200ms ease;
@@ -38,6 +37,9 @@
   height: 100%;
   font-family: Roboto, sans-serif;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   background: none;
   border: none;
   color: inherit;
@@ -49,29 +51,41 @@
 }
 
 .task-button { /*блок-примесь, должно быть по БЭМ*/
-  margin-left: 10px;
+  margin: 0 0 0 10px;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
   border: none;
-  border-radius: 50%;
   outline: none;
+  background: none;
 }
 
 .task__delete-button {
   margin-right: 10px;
-  width: 16px;
-  height: 16px;
-  background: #000;
+  background-image: url('../../images/task-delete-icon.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  cursor: inherit;
+}
+
+.task__save-button {
+  background: #fff;
+  border-radius: 50%;
   cursor: inherit;
 }
 
 .task__complete-button {
-  width: 16px;
-  height: 16px;
+  background: #fff;
+  border-radius: 50%;
   cursor: inherit;
 }
 
 .task__complete-button_checked {
-  width: 16px;
-  height: 16px;
-  background: #777;
-  opacity: .5;
+  background-image: url('../../images/task-completed-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }

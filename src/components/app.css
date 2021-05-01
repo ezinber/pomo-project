@@ -1,6 +1,13 @@
-.App {
+.app {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     min-height: 100vh;
+}
+
+.app__sidebar {
+    margin: 0;
+    padding: 20px;
+    width: 50%;
+    box-sizing: border-box;
 }

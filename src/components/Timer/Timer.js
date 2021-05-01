@@ -47,7 +47,7 @@ function Timer({ settings, onEnd, onStart, onPause, onModeChange }) {
   return (
     <div className="timer" style={{backgroundColor: settings[mode].color}}>
       <div className="timer__ticker">
-        <div 
+        <div
           className="timer__time"
           onClick={handleClickTimer}
           style={{color: settings[mode].color, borderColor: settings[mode].color}}>
