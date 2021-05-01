@@ -7,5 +7,3 @@ export const secondsToFormatTime = (seconds) => {
 
   return `${minutesString}:${secondsString}`
 }
-
-export const minutesToSeconds = (min) => min * 60;
