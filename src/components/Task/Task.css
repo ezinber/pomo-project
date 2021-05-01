@@ -1,0 +1,99 @@
+.task {
+  margin: 0 0 10px 0;
+  padding: 0;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  /*box-shadow: inset 0 0 10px rgb(0 0 0 / 5%);*/
+  border-radius: 20px;
+  color: #fff;
+  background: #FAABAB;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.task:hover {
+  box-shadow: inset 0 0 10px rgb(0 0 0 / 20%);
+}
+
+.task_active {
+  background: rgb(245, 90, 90);
+  color: #fff;
+}
+
+.task_completed {
+  color: #D69F9F;
+  background: #FCCECE;
+  text-decoration: line-through;
+  opacity: .7;
+}
+
+.task_completed:hover {
+  box-shadow: none;
+  cursor: default;
+}
+
+.task__text-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+}
+
+.task__text {
+  margin: 0 0 0 10px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: inherit;
+}
+
+.task__text:focus {
+  outline: none;
+  border-bottom: 1px solid #fff;
+}
+
+.task-button { /*блок-примесь, должно быть по БЭМ*/
+  margin: 0 0 0 10px;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border: none;
+  outline: none;
+  background: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.task__delete-button {
+  margin-right: 10px;
+  background-image: url('../../images/task-delete-icon.svg');
+}
+
+.task__save-button {
+  background-image: url('../../images/task-save-icon.svg');
+  /*background: #fff;
+  border-radius: 50%;*/
+}
+
+.task__complete-button {
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.task__complete-button_checked {
+  background-image: url('../../images/task-completed-icon.svg');
+}
