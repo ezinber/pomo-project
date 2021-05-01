@@ -48,14 +48,12 @@ function App() {
     }));
   }
 
-  function handleTaskSave(task) {
+  function handleTaskSubmit(task) {
     //setTasks(state => state.map(current => current.id === task.id ? task : current));
     setTasks(state => state.map(current => {
       if (current.id === task.id) {
-        console.log(task.text);
         return task;
       }
-      console.log(current.text);
       return current;
     }));
   }
@@ -90,7 +88,7 @@ function App() {
               onDelete={handleTaskDelete}
               onComplete={handleTaskComplete}
               onClick={handleTaskClick}
-              onSave={handleTaskSave}
+              onSubmit={handleTaskSubmit}
             />
           ))}
         </ul>
