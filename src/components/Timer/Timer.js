@@ -4,10 +4,12 @@ import { TimerContext } from '../../contexts/timerContext';
 import Ticker from './Ticker/Ticker';
 import TimerControl from './TimerControl/TimerControl';
 import ModeButton from './ModeButton/ModeButton';
+import Popup from '../Popup/Popup';
 import ring from '../../assets/audio/ring.mp3';
 import './timer.css';
 
 function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
+  const [showConfirmStop, setShowConfirmStop] = useState(false);
   const [windowSize, setWindowSize] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
@@ -41,6 +43,11 @@ function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
   };
 
   const handleClickStop = () => {
+    setShowConfirmStop(true);
+  };
+
+  const stopTimer = () => {
+    closeConfirm();
     onStop(executing);
     stop();
   };
@@ -55,6 +62,10 @@ function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
       height: window.innerHeight,
       width: window.innerWidth,
     });
+  };
+
+  const closeConfirm = () => {
+    setShowConfirmStop(false);
   };
 
   useEffect(() => {
@@ -94,6 +105,25 @@ function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
         wasStarted={wasStarted}
       />
       <audio src={ring} ref={ringRef} />
+      <Popup opened={showConfirmStop} onClose={closeConfirm}>
+        <h2 className="popup__title">Остановить таймер?</h2>
+        <div className="popup__actions">
+          <button
+            type="button"
+            className="popup__button popup__button_type_cancel"
+            onClick={closeConfirm}
+          >
+            Отменить
+          </button>
+          <button
+            type="button"
+            className="popup__button popup__button_type_apply"
+            onClick={stopTimer}
+          >
+            Остановить
+          </button>
+        </div>
+      </Popup>
     </div>
   );
 }
