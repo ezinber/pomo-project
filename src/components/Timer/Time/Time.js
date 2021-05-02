@@ -40,11 +40,16 @@ function Time({ remainingTime }) {
   if (remainingTime === 0) {
     setTimeout(() => {
       setOneLastRerender((val) => val + 1);
+      localStorage.removeItem(TIMER_REMAINING_KEY);
     }, 20);
   }
 
   const isSecondsUp = isNewSecondsFirstTick.current;
   const isMinutesUp = isNewMinutesFirstTick.current;
+
+  if (remainingTime === 0) {
+    return <div>Time is Out</div>;
+  }
 
   return (
     <div className="time-ticker">
