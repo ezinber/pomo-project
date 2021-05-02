@@ -1,0 +1,30 @@
+.menu__list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu__item {
+    margin-right: 25px;
+}
+
+.menu__item:last-of-type {
+    margin-right: 0;
+}
+
+.menu__icon {
+    display: block;
+    height: 30px;
+}
+
+.menu__button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: opacity 200ms ease-in-out;
+}
+
+.menu__button:hover {
+    opacity: .7;
+}

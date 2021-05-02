@@ -1,2 +1,12 @@
 @import "./vendor/normalize.css";
 @import "./vendor/fonts/inter.css";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

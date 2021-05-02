@@ -1,6 +1,14 @@
-.App {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    min-height: 100vh;
+.app {
+    height: 100vh;
+    padding: 40px 30px;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+}
+
+.app_theme_light {
+    background: radial-gradient(circle at center, #fff 0%, rgba(21, 25, 50, 0) 45%), #F55A5A;
+}
+
+.app_theme_dark {
+    background: radial-gradient(circle at center, #303463 0%, rgba(21, 25, 50, 0) 45%), #151932;
 }

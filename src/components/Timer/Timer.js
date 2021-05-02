@@ -1,80 +1,79 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { secondsToFormatTime } from '../../utils/utils';
-import useInterval from '../../hooks/useInterval';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import Button from './Button';
-import ring from '../../assets/audio/ring.mp3';
+import React, { useContext } from 'react';
+import { TIMER_REMAINING_KEY } from '../../utils/constants';
+import { TimerContext } from '../../contexts/timerContext';
+import Ticker from './Ticker/Ticker';
+import TimerControl from './TimerControl/TimerControl';
+import ModeButton from './ModeButton/ModeButton';
 import './timer.css';
 
-function Timer({ settings, onEnd, onStart, onPause, onModeChange }) {
-  const [mode, setMode] = useLocalStorage('mode', settings.work);
-  const [run, setRun] = useState(null);
-  const [timerTime, setTimerTime] = useLocalStorage('timer', settings.work.time);
-  const ringElement = useRef();
+function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
+  const {
+    isPlaying,
+    timerTime,
+    changeMode,
+    start,
+    pause,
+    stop,
+    timerKey,
+    executing,
+  } = useContext(TimerContext);
+  const wasStarted = !!localStorage.getItem(TIMER_REMAINING_KEY);
 
-  const handleClickTimer = () => {
-    if (run) {
-      onPause(mode);
-      setRun(null);
-    } else {
-      if (timerTime === 0) {
-        setTimerTime(mode.time);
-      }
-      onStart(mode);
-      setRun(1000);
-    }
-  }
+  const handleTimeOut = () => {
+    onEnd(executing);
+  };
 
-  const modeChange = (newMode) => {
-    setRun(null);
-    setMode(newMode);
-    setTimerTime(newMode.time)
-    onModeChange(newMode);
-  }
+  const handleClickPause = () => {
+    onPause(executing);
+    pause();
+  };
 
-  useInterval(() => {
-    setTimerTime((prev) => prev - 1);
-  }, run);
+  const handleClickStart = () => {
+    onStart(executing);
+    start();
+  };
 
-  useEffect(() => {
-    if (timerTime <= 0) {
-      ringElement.current.play();
-      setRun(null);
-      onEnd(mode);
-    }
-  }, [timerTime]);
+  const handleClickStop = () => {
+    onStop(executing);
+    stop();
+  };
+
+  const handleModeChange = (slug) => {
+    onModeChange(slug);
+    changeMode(slug);
+  };
 
   return (
-    <div className="timer" style={{backgroundColor: mode.color}}>
-      <div className="timer__ticker">
-        <div 
-          className="timer__time"
-          onClick={handleClickTimer}
-          style={{
-            color: mode.color,
-            borderColor: mode.color
-          }}
-        >
-          {secondsToFormatTime(timerTime)}
-        </div>
+    <div className="timer">
+      <div className="timer__mods">
+        <ul className="mods">
+          <ModeButton title="Work" slug="work" onClick={handleModeChange} />
+          <ModeButton
+            title="Short Break"
+            slug="shortBreak"
+            onClick={handleModeChange}
+          />
+          <ModeButton
+            title="Long Break"
+            slug="longBreak"
+            onClick={handleModeChange}
+          />
+        </ul>
       </div>
-      <div className="timer__buttons">
-        {
-          Object
-            .keys(settings)
-            .map(m => (
-              <Button
-                key={m}
-                settings={settings[m]}
-                mode={mode}
-                handleClick={modeChange}
-              >{settings[m].text}</Button>
-            ))
-        }
-      </div>
-      <div className="timer__ring">
-        <audio src={ring} ref={ringElement} />
-      </div>
+      <Ticker
+        onComplete={handleTimeOut}
+        time={timerTime}
+        isPlaying={isPlaying}
+        size={250}
+        keyProp={timerKey}
+      />
+      <TimerControl
+        isPlaying={isPlaying}
+        start={handleClickStart}
+        pause={handleClickPause}
+        stop={handleClickStop}
+        wasStarted={wasStarted}
+      />
     </div>
   );
 }
