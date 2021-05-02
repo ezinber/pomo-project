@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { TIMER_REMAINING_KEY } from '../../utils/constants';
 import { TimerContext } from '../../contexts/timerContext';
 import Ticker from './Ticker/Ticker';
 import TimerControl from './TimerControl/TimerControl';
 import ModeButton from './ModeButton/ModeButton';
+import ring from '../../assets/audio/ring.mp3';
 import './timer.css';
 
 function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
+  const ringRef = useRef();
   const {
     isPlaying,
     timerTime,
@@ -20,6 +22,7 @@ function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
   const wasStarted = !!localStorage.getItem(TIMER_REMAINING_KEY);
 
   const handleTimeOut = () => {
+    ringRef.current.play();
     onEnd(executing);
   };
 
@@ -74,6 +77,7 @@ function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
         stop={handleClickStop}
         wasStarted={wasStarted}
       />
+      <audio src={ring} ref={ringRef} />
     </div>
   );
 }
