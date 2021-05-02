@@ -4,6 +4,8 @@
     justify-content: space-between;
     flex-direction: column;
     height: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .timer__ticker {
@@ -14,9 +16,26 @@
     height: 300px;
     width: 300px;
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.45);
+}
+
+@media screen and (max-height: 750px) {
+    .timer {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+@media screen and (max-height: 685px) {
+    .timer__ticker {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 439px) {
+    .timer__ticker {
+        height: 250px;
+        width: 250px;
+    }
 }

@@ -54,3 +54,16 @@
     opacity: 0;
     transform: translateY(100%);
 }
+
+@media screen and (max-height: 685px) {
+    .time-ticker {
+        font-size: 60px;
+    }
+}
+
+
+@media screen and (max-width: 439px) {
+    .time-ticker {
+        font-size: 60px;
+    }
+}

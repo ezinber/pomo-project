@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { TIMER_REMAINING_KEY } from '../../utils/constants';
 import { TimerContext } from '../../contexts/timerContext';
 import Ticker from './Ticker/Ticker';
@@ -8,6 +8,10 @@ import ring from '../../assets/audio/ring.mp3';
 import './timer.css';
 
 function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
+  const [windowSize, setWindowSize] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
   const ringRef = useRef();
   const {
     isPlaying,
@@ -46,28 +50,40 @@ function Timer({ onPause, onStart, onEnd, onStop, onModeChange }) {
     changeMode(slug);
   };
 
+  const handleResize = () => {
+    setWindowSize({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="timer">
-      <div className="timer__mods">
-        <ul className="mods">
-          <ModeButton title="Work" slug="work" onClick={handleModeChange} />
-          <ModeButton
-            title="Short Break"
-            slug="shortBreak"
-            onClick={handleModeChange}
-          />
-          <ModeButton
-            title="Long Break"
-            slug="longBreak"
-            onClick={handleModeChange}
-          />
-        </ul>
-      </div>
+      <ul className="mods">
+        <ModeButton title="Work" slug="work" onClick={handleModeChange} />
+        <ModeButton
+          title="Short Break"
+          slug="shortBreak"
+          onClick={handleModeChange}
+        />
+        <ModeButton
+          title="Long Break"
+          slug="longBreak"
+          onClick={handleModeChange}
+        />
+      </ul>
       <Ticker
         onComplete={handleTimeOut}
         time={timerTime}
         isPlaying={isPlaying}
-        size={250}
+        size={windowSize.width > 439 && windowSize.height > 685 ? 250 : 220}
         keyProp={timerKey}
       />
       <TimerControl
