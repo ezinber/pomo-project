@@ -6,9 +6,9 @@
 }
 
 .app_theme_light {
-    background: radial-gradient(circle at center, #fff 0%, rgba(21, 25, 50, 0) 45%), #F55A5A;
+    background: radial-gradient(circle at center, #fff 0%, rgba(21, 25, 50, 0) 65%), #F55A5A;
 }
 
 .app_theme_dark {
-    background: radial-gradient(circle at center, #303463 0%, rgba(21, 25, 50, 0) 45%), #151932;
+    background: radial-gradient(circle at center, #303463 0%, rgba(21, 25, 50, 0) 65%), #151932;
 }

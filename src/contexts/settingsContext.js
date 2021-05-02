@@ -4,15 +4,15 @@ import { minutesToSeconds } from '../utils/utils';
 const SettingsContext = createContext({
   timer: {
     work: {
-      time: minutesToSeconds(0.3),
+      time: minutesToSeconds(25),
       slug: 'work',
     },
     shortBreak: {
-      time: minutesToSeconds(0.1),
+      time: minutesToSeconds(5),
       slug: 'shortBreak',
     },
     longBreak: {
-      time: minutesToSeconds(0.2),
+      time: minutesToSeconds(15),
       slug: 'longBreak',
     },
   },

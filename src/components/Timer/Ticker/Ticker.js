@@ -13,7 +13,11 @@ function Ticker({ keyProp, isPlaying, time, size, onComplete }) {
         strokeWidth={4}
         isPlaying={isPlaying}
         duration={time}
-        colors="#FE6F6B"
+        colors={[
+          // ['#369d36', 0.75],
+          // ['#ffff00', 0.15],
+          ['#FE6F6B', 1],
+        ]}
         initialRemainingTime={
           +localStorage.getItem(TIMER_REMAINING_KEY) || time // Если в LS есть запись о прошлом запуске таймера, то подставим остаток времени. Значение должно быть типа Number!
         }
