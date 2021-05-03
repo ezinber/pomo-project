@@ -50,6 +50,8 @@ const TimerContextProvider = ({ children }) => {
   return (
     <TimerContext.Provider
       value={{
+        settings,
+        setSettings,
         executing,
         timerKey,
         start,
