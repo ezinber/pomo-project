@@ -3,7 +3,7 @@ import './Task.css';
 
 const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
   const [text, setText] = React.useState(task.text);
-  const [isEditing, setIsEditing] = React.useState(false); //состояние при редактировании заметки
+  const [isEditing, setIsEditing] = React.useState(false); //состояние при редактировании задачи
 
   const taskClassName = (
     `task${task.isActive ? ' task_active' : ''}${task.isCompleted ? ' task_completed' : ''}`
@@ -39,27 +39,29 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
     }
   }
 
-  function handleBlur() { //действия при потере фокуса инпута
-    setIsEditing(false);
+  function handleCancel() {
     setText(task.text);
+    setIsEditing(false);
   }
 
   return (
-    <li className={taskClassName} key={task.id} onClick={handleClick}>
+    <li className={taskClassName} key={task.id}>
       <button
         type="button"
         className={completeButtonClassName}
         onClick={handleComplete}
         title={task.isCompleted ? 'uncheck' : 'check'}
+        disabled={isEditing} //запрет завершения при редактировании
       />
-      <form className="task__text-wrapper" name="task" onSubmit={handleSubmit}>
+      <form className="task__text-wrapper" name="task" onSubmit={handleSubmit} onClick={handleClick}>
         <input
           type="text"
           className="task__text"
-          onChange={handleChange}
           value={text}
-          disabled={task.isCompleted}
-          onBlur={handleSubmit} //при потере фокуса сохраняются изменения
+          onChange={handleChange}
+          minLength="2"
+          maxLength="100"
+          disabled={task.isCompleted} //запрещаем редактирование и выбор как активной при завершении
         />
         <button
           type="submit"
@@ -67,11 +69,19 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
           title="save"
           style={isEditing ? {display: 'block'} : {display: 'none'} /*меняем видимость иконки при редактировании */}
         />
+         <button
+          type="button"
+          className="task-button task__cancel-button"
+          title="cancel"
+          onClick={handleCancel}
+          style={isEditing ? {display: 'block'} : {display: 'none'} /*меняем видимость иконки при редактировании */}
+        />
       </form>
       <button
         type="button"
         className="task-button task__delete-button"
         title="delete"
+        style={isEditing ? {display: 'none'} : {display: 'block'}}
         onClick={handleDelete}
       />
     </li>
