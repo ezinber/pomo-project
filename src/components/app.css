@@ -13,6 +13,13 @@
     background: radial-gradient(circle at center, #303463 0%, rgba(21, 25, 50, 0) 65%), #151932;
 }
 
+.app__sidebar {
+    margin: 0;
+    padding: 20px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
 @media screen and (max-width: 439px) {
     .app {
         padding: 15px;
