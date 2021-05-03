@@ -3,9 +3,9 @@ import settingsIcon from '../../assets/icons/settings.svg';
 import listIcon from '../../assets/icons/list.svg';
 import './menu.css';
 
-function Menu() {
+function Menu({ sidebarOpened, onClickTasks }) {
   return (
-    <nav className="menu">
+    <nav className={`menu ${sidebarOpened ? 'menu_hidden' : ''}`}>
       <ul className="menu__list">
         <li className="menu__item">
           <button
@@ -17,7 +17,12 @@ function Menu() {
           </button>
         </li>
         <li className="menu__item">
-          <button aria-label="Task list" className="menu__button" type="button">
+          <button
+            aria-label="Task list"
+            className="menu__button"
+            type="button"
+            onClick={onClickTasks}
+          >
             <img src={listIcon} alt="Task list" className="menu__icon" />
           </button>
         </li>
