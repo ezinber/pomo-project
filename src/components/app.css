@@ -50,15 +50,6 @@
     cursor: pointer;
 }
 
-.tasks {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    display: grid;
-    align-content: baseline;
-    /*grid-gap: 10px;*/
-}
-
 @media screen and (max-width: 849px) {
     .app__sidebar {
         position: absolute;

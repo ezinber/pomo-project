@@ -88,7 +88,6 @@ function App() {
             onModeChange={handleTimerModeChange}
           />
         </div>
-        {/* Список задач возможно стоит вынести в отдельный компонент (Task)*/}
         <div
           className={`app__sidebar ${sidebarOpen ? 'app__sidebar_opened' : ''}`}
         >
@@ -109,18 +108,6 @@ function App() {
             onClick={handleTaskClick}
             onSubmit={handleTaskSubmit}
           />
-          {/*<ul className="tasks">
-            {tasks.map((taskData) => (
-              <Task
-                key={taskData.id}
-                task={taskData}
-                onDelete={handleTaskDelete}
-                onComplete={handleTaskComplete}
-                onClick={handleTaskClick}
-                onSubmit={handleTaskSubmit}
-              />
-            ))}
-          </ul>*/}
         </div>
       </TimerContextProvider>
     </div>

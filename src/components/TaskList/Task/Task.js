@@ -5,12 +5,12 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
   const [text, setText] = React.useState(task.text);
   const [isEditing, setIsEditing] = React.useState(false); //состояние при редактировании задачи
 
-  const taskClassName = (
-    `task${task.isActive ? ' task_active' : ''}${task.isCompleted ? ' task_completed' : ''}`
-  )
-  const completeButtonClassName = (
-    `task-button task__complete-button${task.isCompleted ? ' task__complete-button_checked' : ''}`
-  )
+  const taskClassName = `task${task.isActive ? ' task_active' : ''}${
+    task.isCompleted ? ' task_completed' : ''
+  }`;
+  const completeButtonClassName = `task-button task__complete-button${
+    task.isCompleted ? ' task__complete-button_checked' : ''
+  }`;
 
   function handleChange(e) {
     setText(e.target.value);
@@ -53,7 +53,12 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
         title={task.isCompleted ? 'uncheck' : 'check'}
         disabled={isEditing} //запрет завершения при редактировании
       />
-      <form className="task__text-wrapper" name="task" onSubmit={handleSubmit} onClick={handleClick}>
+      <form
+        className="task__text-wrapper"
+        name="task"
+        onSubmit={handleSubmit}
+        onClick={handleClick}
+      >
         <input
           type="text"
           className="task__text"
@@ -67,25 +72,25 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
           type="submit"
           className="task-button task__save-button"
           title="save"
-          style={isEditing ? {display: 'block'} : {display: 'none'} /*меняем видимость иконки при редактировании */}
+          style={isEditing ? { display: 'block' } : { display: 'none' }}
         />
-         <button
+        <button
           type="button"
           className="task-button task__cancel-button"
           title="cancel"
           onClick={handleCancel}
-          style={isEditing ? {display: 'block'} : {display: 'none'} /*меняем видимость иконки при редактировании */}
+          style={isEditing ? { display: 'block' } : { display: 'none' }}
         />
       </form>
       <button
         type="button"
         className="task-button task__delete-button"
         title="delete"
-        style={isEditing ? {display: 'none'} : {display: 'block'}}
+        style={isEditing ? { display: 'none' } : { display: 'block' }}
         onClick={handleDelete}
       />
     </li>
-  )
+  );
 });
 
 export default Task;
