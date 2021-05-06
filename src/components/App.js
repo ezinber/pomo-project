@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Timer from './Timer/Timer';
-//import Task from './TaskList/Task/Task';
 import TaskList from './TaskList/TaskList';
 import useLocalStorage from '../hooks/useLocalStorage';
 import TimerContextProvider from '../contexts/timerContext';
@@ -38,7 +37,7 @@ function App() {
 
   function handleTaskDelete(task) {
     setTasks((state) => state.filter((current) => current.id !== task.id));
-  };
+  }
 
   function handleTaskComplete(task) {
     task.isCompleted = !task.isCompleted;
@@ -46,7 +45,7 @@ function App() {
     setTasks((state) =>
       state.map((current) => (current.id === task.id ? task : current))
     );
-  };
+  }
 
   function handleTaskClick(task) {
     setTasks((state) =>
@@ -58,19 +57,17 @@ function App() {
         return current;
       })
     );
-  };
+  }
 
   function handleTaskSubmit(task) {
-    //setTasks(state => state.map(current => current.id === task.id ? task : current));
     setTasks((state) =>
-      state.map((current) => {
-        if (current.id === task.id) {
-          return task;
-        }
-        return current;
-      })
+      state.map((current) => (current.id === task.id ? task : current))
     );
-  };
+  }
+
+  function handleTaskAdd(newTask) {
+    setTasks([...tasks, newTask]);
+  }
 
   return (
     <div className="app app_theme_dark">
@@ -107,6 +104,7 @@ function App() {
             onComplete={handleTaskComplete}
             onClick={handleTaskClick}
             onSubmit={handleTaskSubmit}
+            onAdd={handleTaskAdd}
           />
         </div>
       </TimerContextProvider>

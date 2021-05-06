@@ -3,7 +3,7 @@ import './Task.css';
 
 const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
   const [text, setText] = React.useState(task.text);
-  const [isEditing, setIsEditing] = React.useState(false); //состояние при редактировании задачи
+  const [isEditing, setIsEditing] = React.useState(false); // состояние при редактировании задачи
 
   const taskClassName = `task${task.isActive ? ' task_active' : ''}${
     task.isCompleted ? ' task_completed' : ''
@@ -14,7 +14,7 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
 
   function handleChange(e) {
     setText(e.target.value);
-    !isEditing && setIsEditing(true); //при изменении названия включаем состояние редактирования
+    !isEditing && setIsEditing(true); // при изменении названия включаем состояние редактирования
   }
 
   function handleDelete() {
@@ -44,6 +44,8 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
     setIsEditing(false);
   }
 
+  isEditing && !task.isActive && handleCancel(); // при выборе другой задачи отменяем изменения
+
   return (
     <li className={taskClassName} key={task.id}>
       <button
@@ -66,6 +68,7 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
           onChange={handleChange}
           minLength="2"
           maxLength="100"
+          placeholder="новая задача"
           disabled={task.isCompleted} //запрещаем редактирование и выбор как активной при завершении
         />
         <button

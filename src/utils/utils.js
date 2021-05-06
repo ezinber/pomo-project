@@ -9,3 +9,13 @@ export const secondsToFormatTime = (seconds) => {
 }
 
 export const minutesToSeconds = (min) => min * 60;
+
+export const getRandomString = () => {
+  const initialString = 'abcdefgABCDEFG1234567890';
+  let outputString = '';
+  for (let i = 0; i < 8; i++) {
+    outputString += initialString[Math.round(Math.random() * (initialString.length - 1))];
+  }
+
+  return outputString;
+}

@@ -65,6 +65,11 @@
   /*border-bottom: 1px solid #fff;*/
 }
 
+.task__text::placeholder {
+  color: #d69f9f;
+  font-style: italic;
+}
+
 .task-button {
   /*блок-примесь, должно быть по БЭМ*/
   margin: 0 0 0 10px;

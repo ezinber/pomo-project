@@ -1,9 +1,20 @@
 import React from 'react';
 import Task from './Task/Task';
+import { getRandomString } from '../../utils/utils';
 import './TaskList.css';
 
 const TaskList = React.memo(
-  ({ tasks, onComplete, onDelete, onClick, onSubmit }) => {
+  ({ tasks, onComplete, onDelete, onClick, onSubmit, onAdd }) => {
+    function handleTaskAdd() {
+      // добавление новой задачи со сгенерированным id
+      onAdd({
+        id: getRandomString(),
+        text: '',
+        isActive: false,
+        isCompleted: false,
+      });
+    }
+
     return (
       <div className="task-list">
         <h2 className="task-list__title">Активные задачи</h2>
@@ -25,7 +36,12 @@ const TaskList = React.memo(
             )
           }
         </ul>
-        <button type="button" className="task-list__add-button">
+
+        <button
+          type="button"
+          className="task-list__add-button"
+          onClick={handleTaskAdd}
+        >
           добавить задачу
         </button>
 
