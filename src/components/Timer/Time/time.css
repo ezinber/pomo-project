@@ -1,0 +1,69 @@
+.timer-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.time-ticker {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+    /*color: #FE6F6B;*/
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.time-ticker__time {
+    flex: 1 1;
+    height: 60px;
+    position: relative;
+}
+
+.time-ticker__digit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.2s;
+}
+
+.time-ticker__digit_type_minutes {
+    justify-content: flex-end;
+}
+
+.time-ticker__digit_type_seconds {
+    justify-content: flex-start;
+}
+
+.time-ticker__digit_slide_up {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.time-ticker__digit_slide_down {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+@media screen and (max-height: 685px) {
+    .time-ticker {
+        font-size: 60px;
+    }
+}
+
+
+@media screen and (max-width: 439px) {
+    .time-ticker {
+        font-size: 60px;
+    }
+}
