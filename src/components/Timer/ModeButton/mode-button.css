@@ -1,0 +1,51 @@
+.mods {
+    list-style-type: none;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 380px;
+    height: 53px;
+    margin: 0 auto;
+    padding: 7px;
+    background: #0C0E1B;
+    border-radius: 50px;
+    filter: drop-shadow(6px 11px 12px rgba(0, 0, 0, 0.31));
+}
+
+.mods__item {
+    flex-grow: 1;
+}
+
+.mods__button {
+    cursor: pointer;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 200ms ease-in-out;
+}
+
+.mods__button:hover {
+    background-color: rgba(254, 111, 107, 0.3);
+}
+
+.mods__button_active,
+.mods__button_active:hover {
+    background-color: #FE6F6B;
+}
+
+@media screen and (max-width: 440px) {
+    .mods {
+        width: 100%;
+    }
+
+    .mods__button {
+        font-size: 16px;
+    }
+}

@@ -14,7 +14,7 @@
 }
 
 .task:hover {
-  box-shadow: inset 0 0 10px rgb(0 0 0 / 20%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
 }
 
 .task_active {
@@ -72,19 +72,17 @@
   min-height: 20px;
   border: none;
   outline: none;
-  background: none;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: transparent no-repeat center;
   cursor: pointer;
 }
 
 .task__delete-button {
   margin-right: 10px;
-  background-image: url('../../images/task-delete-icon.svg');
+  background-image: url('../../assets/icons/task-delete-icon.svg');
 }
 
 .task__save-button {
-  background-image: url('../../images/task-save-icon.svg');
+  background-image: url('../../assets/icons/task-save-icon.svg');
   /*background: #fff;
   border-radius: 50%;*/
 }
@@ -95,5 +93,5 @@
 }
 
 .task__complete-button_checked {
-  background-image: url('../../images/task-completed-icon.svg');
+  background-image: url('../../assets/icons/task-completed-icon.svg');
 }
