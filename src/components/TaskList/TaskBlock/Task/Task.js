@@ -71,27 +71,30 @@ const Task = React.memo(({ task, onComplete, onDelete, onClick, onSubmit }) => {
           placeholder="новая задача"
           disabled={task.isCompleted} //запрещаем редактирование и выбор как активной при завершении
         />
-        <button
-          type="submit"
-          className="task-button task__save-button"
-          title="save"
-          style={isEditing ? { display: 'block' } : { display: 'none' }}
-        />
+        {isEditing && (
+          <>
+            <button
+              type="submit"
+              className="task-button task__save-button"
+              title="save"
+            />
+            <button
+              type="button"
+              className="task-button task__cancel-button"
+              title="cancel"
+              onClick={handleCancel}
+            />
+          </>
+        )}
+      </form>
+      {!isEditing && (
         <button
           type="button"
-          className="task-button task__cancel-button"
-          title="cancel"
-          onClick={handleCancel}
-          style={isEditing ? { display: 'block' } : { display: 'none' }}
+          className="task-button task__delete-button"
+          title="delete"
+          onClick={handleDelete}
         />
-      </form>
-      <button
-        type="button"
-        className="task-button task__delete-button"
-        title="delete"
-        style={isEditing ? { display: 'none' } : { display: 'block' }}
-        onClick={handleDelete}
-      />
+      )}
     </li>
   );
 });

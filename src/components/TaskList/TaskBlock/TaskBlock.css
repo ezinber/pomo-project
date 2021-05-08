@@ -1,0 +1,21 @@
+.task-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-block__tasks {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  align-content: baseline;
+}
+
+.task-block__title {
+  margin: 0 0 20px;
+  padding: 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(245, 90, 90);
+}

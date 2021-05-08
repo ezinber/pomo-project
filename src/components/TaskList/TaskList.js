@@ -1,10 +1,17 @@
 import React from 'react';
-import Task from './Task/Task';
+import TaskBlock from './TaskBlock/TaskBlock';
 import { getRandomString } from '../../utils/utils';
 import './TaskList.css';
 
 const TaskList = React.memo(
   ({ tasks, onComplete, onDelete, onClick, onSubmit, onAdd }) => {
+    const currentTasks = [];
+    const completedTasks = [];
+
+    tasks.forEach((item) => {
+      item.isCompleted ? completedTasks.push(item) : currentTasks.push(item);
+    });
+
     function handleTaskAdd() {
       // добавление новой задачи со сгенерированным id
       onAdd({
@@ -17,25 +24,14 @@ const TaskList = React.memo(
 
     return (
       <div className="task-list">
-        <h2 className="task-list__title">Активные задачи</h2>
-        <ul className="task-list__tasks">
-          {
-            /* список активных задач */
-            tasks.map(
-              (taskData) =>
-                !taskData.isCompleted && (
-                  <Task
-                    key={taskData.id}
-                    task={taskData}
-                    onDelete={onDelete}
-                    onComplete={onComplete}
-                    onClick={onClick}
-                    onSubmit={onSubmit}
-                  />
-                )
-            )
-          }
-        </ul>
+        <TaskBlock
+          tasks={currentTasks}
+          title="Текущие задачи"
+          onDelete={onDelete}
+          onComplete={onComplete}
+          onClick={onClick}
+          onSubmit={onSubmit}
+        />
 
         <button
           type="button"
@@ -46,30 +42,18 @@ const TaskList = React.memo(
         </button>
 
         {
-          /* скрываем заголовок при отсутствии завершённых задач */
-          tasks.some((taskData) => taskData.isCompleted) && (
-            <h2 className="task-list__title">Завершённые задачи</h2>
+          /* показываем список при наличии завершённых задач */
+          completedTasks.length > 0 && (
+            <TaskBlock
+              tasks={completedTasks}
+              title="Завершённые задачи"
+              onDelete={onDelete}
+              onComplete={onComplete}
+              onClick={onClick}
+              onSubmit={onSubmit}
+            />
           )
         }
-
-        <ul className="task-list__tasks">
-          {
-            /* список завершённых задач */
-            tasks.map(
-              (taskData) =>
-                taskData.isCompleted && (
-                  <Task
-                    key={taskData.id}
-                    task={taskData}
-                    onDelete={onDelete}
-                    onComplete={onComplete}
-                    onClick={onClick}
-                    onSubmit={onSubmit}
-                  />
-                )
-            )
-          }
-        </ul>
       </div>
     );
   }

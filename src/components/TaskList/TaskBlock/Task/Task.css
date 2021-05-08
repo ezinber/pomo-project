@@ -91,18 +91,18 @@
 
 .task__delete-button {
   margin-right: 10px;
-  background-image: url('../../../assets/icons/task-delete-icon.svg');
+  background-image: url('../../../../assets/icons/task-delete-icon.svg');
 }
 
 .task__save-button {
-  background-image: url('../../../assets/icons/task-save-icon.svg');
+  background-image: url('../../../../assets/icons/task-save-icon.svg');
   /*background: #fff;
   border-radius: 50%;*/
 }
 
 .task__cancel-button {
   margin-right: 10px;
-  background-image: url('../../../assets/icons/task-cancel-icon.svg');
+  background-image: url('../../../../assets/icons/task-cancel-icon.svg');
   /*background: #fff;
   border-radius: 50%;*/
 }
@@ -113,5 +113,5 @@
 }
 
 .task__complete-button_checked {
-  background-image: url('../../../assets/icons/task-completed-icon.svg');
+  background-image: url('../../../../assets/icons/task-completed-icon.svg');
 }
