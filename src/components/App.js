@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Timer from './Timer/Timer';
-import Task from './Task/Task';
+import TaskList from './TaskList/TaskList';
 import useLocalStorage from '../hooks/useLocalStorage';
 import TimerContextProvider from '../contexts/timerContext';
 import Header from './Header/Header';
@@ -60,15 +60,13 @@ function App() {
   }
 
   function handleTaskSubmit(task) {
-    //setTasks(state => state.map(current => current.id === task.id ? task : current));
     setTasks((state) =>
-      state.map((current) => {
-        if (current.id === task.id) {
-          return task;
-        }
-        return current;
-      })
+      state.map((current) => (current.id === task.id ? task : current))
     );
+  }
+
+  function handleTaskAdd(newTask) {
+    setTasks([...tasks, newTask]);
   }
 
   return (
@@ -87,7 +85,6 @@ function App() {
             onModeChange={handleTimerModeChange}
           />
         </div>
-        {/* Список задач возможно стоит вынести в отдельный компонент (Task)*/}
         <div
           className={`app__sidebar ${sidebarOpen ? 'app__sidebar_opened' : ''}`}
         >
@@ -101,18 +98,14 @@ function App() {
               <img src={closeIcon} alt="Close" />
             </button>
           )}
-          <ul className="tasks">
-            {tasks.map((taskData) => (
-              <Task
-                key={taskData.id}
-                task={taskData}
-                onDelete={handleTaskDelete}
-                onComplete={handleTaskComplete}
-                onClick={handleTaskClick}
-                onSubmit={handleTaskSubmit}
-              />
-            ))}
-          </ul>
+          <TaskList
+            tasks={tasks}
+            onDelete={handleTaskDelete}
+            onComplete={handleTaskComplete}
+            onClick={handleTaskClick}
+            onSubmit={handleTaskSubmit}
+            onAdd={handleTaskAdd}
+          />
         </div>
       </TimerContextProvider>
     </div>

@@ -8,25 +8,25 @@
   /*box-shadow: inset 0 0 10px rgb(0 0 0 / 5%);*/
   border-radius: 20px;
   color: #fff;
-  background: #FAABAB;
+  background: #faabab;
   cursor: pointer;
   transition: all 200ms ease;
 }
 
 .task:hover {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .task_active {
-  background: rgb(245, 90, 90);
+  background: rgba(245, 90, 90);
   color: #fff;
 }
 
 .task_completed {
-  color: #D69F9F;
-  background: #FCCECE;
+  color: #d69f9f;
+  background: #fccece;
   text-decoration: line-through;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .task_completed:hover {
@@ -35,14 +35,16 @@
 }
 
 .task__text-wrapper {
-  margin: 0;
+  margin: 0 0 0 10px;
   padding: 0;
   width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
 }
 
 .task__text {
-  margin: 0 0 0 10px;
+  margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
@@ -60,10 +62,16 @@
 
 .task__text:focus {
   outline: none;
-  border-bottom: 1px solid #fff;
+  /*border-bottom: 1px solid #fff;*/
 }
 
-.task-button { /*блок-примесь, должно быть по БЭМ*/
+.task__text::placeholder {
+  color: #d69f9f;
+  font-style: italic;
+}
+
+.task-button {
+  /*блок-примесь, должно быть по БЭМ*/
   margin: 0 0 0 10px;
   padding: 0;
   width: 20px;
@@ -74,15 +82,27 @@
   outline: none;
   background: transparent no-repeat center;
   cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.task-button:hover {
+  opacity: 0.7;
 }
 
 .task__delete-button {
   margin-right: 10px;
-  background-image: url('../../assets/icons/task-delete-icon.svg');
+  background-image: url('../../../../assets/icons/task-delete-icon.svg');
 }
 
 .task__save-button {
-  background-image: url('../../assets/icons/task-save-icon.svg');
+  background-image: url('../../../../assets/icons/task-save-icon.svg');
+  /*background: #fff;
+  border-radius: 50%;*/
+}
+
+.task__cancel-button {
+  margin-right: 10px;
+  background-image: url('../../../../assets/icons/task-cancel-icon.svg');
   /*background: #fff;
   border-radius: 50%;*/
 }
@@ -93,5 +113,5 @@
 }
 
 .task__complete-button_checked {
-  background-image: url('../../assets/icons/task-completed-icon.svg');
+  background-image: url('../../../../assets/icons/task-completed-icon.svg');
 }
